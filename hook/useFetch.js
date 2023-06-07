@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 
 const useFetch = (endpoint, query) => {
 	const [data, setData] = useState([])
-	const [loading, setLoading] = useState(false)
+	const [isLoading, setIsLoading] = useState(false)
 	const [error, setError] = useState(null)
 
 	const options = {
@@ -20,17 +20,17 @@ const useFetch = (endpoint, query) => {
 	}
 
 	const fetchData = async () => {
-		setLoading(true)
+		setIsLoading(true)
 
 		try {
 			const response = await axios.request(options)
 			setData(response.data.data)
-			setLoading(false)
+			setIsLoading(false)
 		} catch (error) {
 			setError(error)
-			alert('Something went wrong')
+			alert('There is an error: ' + error)
 		} finally {
-			setLoading(false)
+			setIsLoading(false)
 		}
 	}
 
@@ -39,11 +39,16 @@ const useFetch = (endpoint, query) => {
 	}, [])
 
 	const refetch = () => {
-		setLoading(true)
+		setIsLoading(true)
 		fetchData()
 	}
 
-	return { data, loading, error, refetch }
+	return {
+		data,
+		isLoading,
+		error,
+		refetch,
+	}
 }
 
 export default useFetch
