@@ -16,11 +16,10 @@ import useFetch from '../../../hook/useFetch'
 const Popularjobs = () => {
 	const router = useRouter()
 	const { data, isLoading, error } = useFetch('search', {
-		query: 'React Developer',
+		query: 'React developer',
 		num_pages: 1,
 	})
-
-	const [selectedJob, setSelectedJob] = useState(null)
+	const [selectedJob, setSelectedJob] = useState()
 
 	const handleCardPress = (item) => {
 		router.push(`/job-details/${item.job_id}`)
@@ -38,7 +37,7 @@ const Popularjobs = () => {
 
 			<View style={styles.cardsContainer}>
 				{isLoading ? (
-					<ActivityIndicator size='large' color={COLORS.primary} />
+					<ActivityIndicator size='large' colors={COLORS.primary} />
 				) : error ? (
 					<Text>Something went wrong</Text>
 				) : (

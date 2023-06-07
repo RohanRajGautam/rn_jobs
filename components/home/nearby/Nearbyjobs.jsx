@@ -9,7 +9,7 @@ import NearbyJobCard from '../../common/cards/nearby/NearbyJobCard'
 const Nearbyjobs = () => {
 	const router = useRouter()
 	const { data, isLoading, error } = useFetch('search', {
-		query: 'React Developer',
+		query: 'React developer',
 		num_pages: 1,
 	})
 
@@ -24,7 +24,7 @@ const Nearbyjobs = () => {
 
 			<View style={styles.cardsContainer}>
 				{isLoading ? (
-					<ActivityIndicator size='large' color={COLORS.primary} />
+					<ActivityIndicator size='large' colors={COLORS.primary} />
 				) : error ? (
 					<Text>Something went wrong</Text>
 				) : (
